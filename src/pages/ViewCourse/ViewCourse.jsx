@@ -75,13 +75,13 @@ const ViewCourse = ({}) => {
               <h4>Course Duration</h4>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <p>{course[0].cDuration}</p>
+              <p>{course[0].cDuration} Months</p>
             </Grid>
             <Grid item xs={12} sm={3}>
               <h4>Course Fees</h4>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <p>{course[0].cFees}</p>
+              <p>{course[0].cFees} ₹</p>
             </Grid>
             <Grid item xs={12} sm={3}>
               <h4>Course Subject</h4>
@@ -117,7 +117,6 @@ const ViewCourse = ({}) => {
           </Grid>
         </Grid>
       </Container>
-      /
     </ThemeProvider>
   );
 };

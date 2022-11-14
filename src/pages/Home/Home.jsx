@@ -19,7 +19,6 @@ const Home = () => {
 
   const handleIconClick = (index, type) => {
     if (type === "view") {
-
       navigate(generatePath("/course/:id", { id: index }));
     } else if (type === "edit") {
       navigate("/editCourse", {
@@ -32,7 +31,8 @@ const Home = () => {
       courses.splice(index, 1);
       const updatedList = JSON.stringify(courses);
       localStorage.setItem("courses", updatedList);
-      alert("Entry removed");
+      alert("Course removed please refresh page");
+      navigate(0);
     }
   };
 
