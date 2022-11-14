@@ -93,14 +93,19 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = formFields;
-    const userData = JSON.parse(atob(sessionStorage.getItem("User")));
-    // console.log("data", data);
-    // console.log("userData", userData);
-    if (data.email == userData.email && data.passWord == userData.passWord) {
-      localStorage.setItem("login", true);
-      navigate("/home");
+    const isUser = sessionStorage.getItem("User");
+
+    if (isUser) {
+      const userData = JSON.parse(atob(isUser));
+      if (data.email == userData.email && data.passWord == userData.passWord) {
+        localStorage.setItem("login", true);
+        navigate("/home");
+      } else {
+        alert("Email or Password is not matched");
+      }
     } else {
-      alert("Email or Password is not matched");
+      alert("No user present please signup first");
+      navigate("/register");
     }
   };
 
