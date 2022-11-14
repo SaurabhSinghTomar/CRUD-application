@@ -1,5 +1,4 @@
 import { Navigate } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 

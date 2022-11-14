@@ -31,4 +31,20 @@ export const Columns = [
     name: "Options",
     selector: (row) => row.option,
   },
+  {
+    name: "Buttons",
+    button: true,
+    cell: (row) =>
+      row.showButtons ? (
+        <>
+          <button
+            onClick={() => alert(row.index)}
+            style={{ marginRight: "5px" }}
+          >
+            Edit
+          </button>
+          <button onClick={() => alert(row.name)}>Delete</button>
+        </>
+      ) : null,
+  },
 ];

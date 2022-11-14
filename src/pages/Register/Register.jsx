@@ -31,10 +31,10 @@ export default function Register() {
     firstNameErr: false,
     lastNameErr: false,
   });
-  const [errorMessage, setErrorMessage] = useState({
+  const errorMessage = {
     empty: "Field cannot be empty",
     invalid: "Please enter valid",
-  });
+  };
   const [isFormValid, setIsFormValid] = useState(false);
 
   /**
@@ -109,27 +109,40 @@ export default function Register() {
     }
   };
 
-    /**
+  /**
    * @function to disable the submit button  of form until every field is valid
    */
   useEffect(() => {
-    if (Object.values(formErrors).every((value) => value === false)) {
+    if (
+      Object.values(formErrors).every((value) => value === false) &&
+      Object.values(formFields).every((value) => value)
+    ) {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
     }
-
-  }, [formErrors,formFields]);
+  }, [formErrors, formFields]);
 
   /**
    * @function to handle the submit action of form
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (Object.values(formFields).every((value) => value !== "")) {
+    const isUser = sessionStorage.getItem("User");
+    if (isUser) {
+      const userData = JSON.parse(atob(isUser));
+      if (userData.email === formFields.email) {
+        alert("This user has been already registerd please login");
+      } else if (Object.values(formFields).every((value) => value !== "")) {
+        sessionStorage.setItem("User", btoa(JSON.stringify(formFields)));
+        alert("you have been successfully registered please login to continue");
+        navigate("/login", { replace: true });
+      }
+    } else {
       sessionStorage.setItem("User", btoa(JSON.stringify(formFields)));
+      alert("you have been successfully registered please login to continue");
+      navigate("/login", { replace: true });
     }
-    navigate("/login", { replace: true });
   };
 
   return (
@@ -179,7 +192,6 @@ export default function Register() {
                     checkErrors(e);
                   }}
                   onBlur={(e) => checkErrors(e)}
-                  autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -253,6 +265,9 @@ export default function Register() {
                       : "Minimum charecter must be 6 and maximum charecter can be 16"
                   }
                   autoComplete="new-password"
+                  inputProps={{
+                    maxLength: 16,
+                  }}
                 />
               </Grid>
             </Grid>

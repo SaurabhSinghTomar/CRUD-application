@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const pages = ["Courses", "About"];
 const settings = ["Profile", "Logout"];
@@ -36,11 +36,11 @@ function Header() {
   const handleCloseUserMenu = (setting) => {
     setAnchorElUser(null);
   };
-
   const logout = () => {
     navigate("/login");
     localStorage.clear();
   };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -92,10 +92,20 @@ function Header() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem
+                onClick={() => {
+                  handleCloseNavMenu();
+                }}
+                component={Link}
+                to={"/home"}
+              >
                 <Typography textAlign="center">{pages[0]}</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to={"/home"}
+              >
                 <Typography textAlign="center">{pages[1]}</Typography>
               </MenuItem>
             </Menu>
@@ -120,15 +130,22 @@ function Header() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+              component={Link}
+              to={"/home"}
+            >
+              {pages[0]}
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+              component={Link}
+              to={"/about"}
+            >
+              {pages[1]}
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -157,6 +174,8 @@ function Header() {
                 onClick={() => {
                   handleCloseUserMenu();
                 }}
+                component={Link}
+                to={"/myProfile"}
               >
                 <Typography textAlign="center">{settings[0]}</Typography>
               </MenuItem>
