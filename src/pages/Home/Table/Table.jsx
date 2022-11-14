@@ -9,34 +9,47 @@ export const Table = ({ handleIconClick, data, filterText }) => {
       name: "Coures Name",
       selector: (row) => row.title,
       sortable: true,
+      hide: "sm",
+      grow: 1,
     },
     {
       name: "Course Duration",
       selector: (row) => row.duration,
       sortable: true,
+      hide: "sm",
+      grow: 1,
     },
     {
       name: "Course Fees",
       selector: (row) => row.fees,
       sortable: true,
+      hide: "sm",
+      grow: 1,
     },
     {
       name: "Coures Subjects",
       selector: (row) => row.subjects,
+      hide: "sm",
+      grow: 1,
     },
     {
       name: "Course Description",
       selector: (row) => row.desc,
+      hide: "md",
+      grow: 1,
     },
     {
       name: "Course Rating",
       selector: (row) => row.rating,
       sortable: true,
+      grow: 1,
     },
     {
       name: "Options",
       selector: (row) => row.option,
       button: true,
+      grow: 1,
+
       cell: (row) =>
         row.showButtons ? (
           <>
@@ -68,5 +81,7 @@ export const Table = ({ handleIconClick, data, filterText }) => {
       -1
   );
 
-  return <DataTable columns={Columns} data={filteredItems} responsive={true} />;
+  return (
+    <DataTable columns={Columns} data={filteredItems} defaultSortField="name" autoWidth="true"/>
+  );
 };
