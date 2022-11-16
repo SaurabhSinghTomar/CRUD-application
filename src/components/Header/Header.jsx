@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link, useNavigate } from "react-router-dom";
 
-const pages = ["Courses", "About"];
+const pages = ["Courses", "About","Short Table"];
 const settings = ["Profile", "Logout"];
 
 function Header() {
@@ -145,6 +145,14 @@ function Header() {
               to={"/about"}
             >
               {pages[1]}
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+              component={Link}
+              to={"/short-table"}
+            >
+              {pages[2]}
             </Button>
           </Box>
 
