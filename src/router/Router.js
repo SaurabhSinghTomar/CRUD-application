@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import NotFound from "../pages/NotFound/NotFound";
 import Register from "../pages/Register/Register";
+import ShortingTable from "../pages/ShortingTable/ShortingTable";
 import ViewCourse from "../pages/ViewCourse/ViewCourse";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoutes";
@@ -101,6 +102,15 @@ const Router = () => {
           </PrivateRoute>
         }
       ></Route>
+        <Route
+        path="/short-table"
+        element={
+          <PrivateRoute>
+            <ShortingTable />
+          </PrivateRoute>
+        }
+      ></Route>
+      
     </Routes>
   );
 };
